@@ -1,5 +1,5 @@
 import { isUndefined, sampleSize, shuffle } from "lodash";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import allCards from "./cards.json";
 import useLocalStorageState from "use-local-storage-state";
