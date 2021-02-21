@@ -31,12 +31,9 @@ const App = () => {
     setCurrentCards(shuffle(currentCards));
   };
 
-  const reset = (force = false) => {
-    let confirmed = false;
-    if (!force) {
-      confirmed = window.confirm("Are you sure?");
-    }
-    if (confirmed || force) {
+  const reset = (force) => {
+    const confirmed = force ? true : window.confirm("Are you sure?");
+    if (confirmed) {
       [
         setNumber,
         setCurrentCardIndex,
@@ -197,7 +194,7 @@ const Game = ({
 };
 
 const Reset = ({ reset }) => {
-  return <button onClick={reset}>Reset Game</button>;
+  return <button onClick={() => reset()}>Reset Game</button>;
 };
 
 const PassButton = styled.button`
