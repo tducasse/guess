@@ -103,6 +103,7 @@ const Game = ({
 }) => {
   const total = cards.length;
   const [loading, setLoading] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     if (loading) {
@@ -153,12 +154,14 @@ const Game = ({
       if (nextCardIndex === -1) {
         return moveToNextRound();
       }
+      setHidden(true);
       return setCurrentCardIndex(nextCardIndex);
     }
     const nextCardIndex = findNextCard(currentCardIndex);
     if (nextCardIndex === -1) {
       return moveToNextRound();
     }
+    setHidden(true);
     return setCurrentCardIndex(nextCardIndex);
   };
 
@@ -187,6 +190,8 @@ const Game = ({
         pass={pass}
         loading={loading}
         disablePass={total - guessed === 1}
+        hidden={hidden}
+        reveal={() => setHidden(false)}
       />
       <Reset reset={reset} />
     </div>
@@ -222,20 +227,26 @@ const CardContainer = styled.div`
   flex-direction: column;
 `;
 
-const Card = ({ card, guess, pass, disablePass, loading }) => {
+const Card = ({ card, guess, pass, disablePass, loading, hidden, reveal }) => {
   if (!card) return null;
   return (
     <CardContainer>
-      <Inline>
-        <GuessButton disabled={loading} onClick={guess}>
-          Got it
-        </GuessButton>
-        <PassButton disabled={disablePass || loading} onClick={pass}>
-          Pass
-        </PassButton>
-      </Inline>
-      <h2>{card.name}</h2>
-      <div>{card.description}</div>
+      {hidden ? (
+        <button onClick={reveal}>Reveal</button>
+      ) : (
+        <>
+          <Inline>
+            <GuessButton disabled={loading} onClick={guess}>
+              Got it
+            </GuessButton>
+            <PassButton disabled={disablePass || loading} onClick={pass}>
+              Pass
+            </PassButton>
+          </Inline>
+          <h2>{card.name}</h2>
+          <div>{card.description}</div>
+        </>
+      )}
     </CardContainer>
   );
 };
