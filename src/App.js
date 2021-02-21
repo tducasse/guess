@@ -1,10 +1,21 @@
 import { isUndefined, sampleSize, shuffle } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import allCards from "./cards.json";
+import useLocalStorageState from "use-local-storage-state";
 
 const App = () => {
-  const [currentCards, setCurrentCards] = useState([]);
+  const [currentCards, setCurrentCards] = useLocalStorageState(
+    "currentCards",
+    []
+  );
+  const [number, setNumber] = useLocalStorageState("number", 30);
+  const [round, setRound] = useLocalStorageState("round", 1);
+  const [guessed, setGuessed] = useLocalStorageState("guessed", 0);
+  const [currentCardIndex, setCurrentCardIndex] = useLocalStorageState(
+    "currentCardIndex",
+    0
+  );
 
   const pickCards = (number) => {
     const randomCards = sampleSize(allCards.cards, number);
@@ -13,15 +24,34 @@ const App = () => {
 
   const finishGame = () => {
     alert("game over");
-    setCurrentCards([]);
+    reset(true);
   };
 
   const shuffleCards = () => {
     setCurrentCards(shuffle(currentCards));
   };
 
+  const reset = (force = false) => {
+    let confirmed = false;
+    if (!force) {
+      // eslint-disable-next-line no-restricted-globals
+      confirmed = confirm("Are you sure?");
+    }
+    if (confirmed || force) {
+      [
+        setNumber,
+        setCurrentCardIndex,
+        setCurrentCards,
+        setRound,
+        setGuessed,
+      ].forEach((callback) => callback.reset());
+    }
+  };
+
   if (!currentCards.length) {
-    return <Setup pickCards={pickCards} />;
+    return (
+      <Setup pickCards={pickCards} setNumber={setNumber} number={number} />
+    );
   }
 
   return (
@@ -29,13 +59,20 @@ const App = () => {
       cards={currentCards}
       shuffleCards={shuffleCards}
       finishGame={finishGame}
+      setCurrentCards={setCurrentCards}
+      setNumber={setNumber}
+      round={round}
+      setRound={setRound}
+      currentCardIndex={currentCardIndex}
+      setCurrentCardIndex={setCurrentCardIndex}
+      guessed={guessed}
+      setGuessed={setGuessed}
+      reset={reset}
     />
   );
 };
 
-const Setup = ({ pickCards }) => {
-  const [number, setNumber] = useState(30);
-
+const Setup = ({ pickCards, setNumber, number }) => {
   const submit = (e) => {
     e.preventDefault();
     pickCards(number);
@@ -55,20 +92,21 @@ const Setup = ({ pickCards }) => {
   );
 };
 
-const Game = ({ cards, finishGame, shuffleCards }) => {
+const Game = ({
+  cards,
+  finishGame,
+  shuffleCards,
+  setCurrentCards,
+  round,
+  setRound,
+  guessed,
+  setGuessed,
+  currentCardIndex,
+  setCurrentCardIndex,
+  reset,
+}) => {
   const total = cards.length;
-  const [round, setRound] = useState(1);
-  const [guessed, setGuessed] = useState(0);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (round !== 1 && cards.length) {
-      cards.forEach((card) => {
-        card.guessed = false;
-      });
-    }
-  }, [round, cards]);
 
   useEffect(() => {
     if (loading) {
@@ -86,6 +124,7 @@ const Game = ({ cards, finishGame, shuffleCards }) => {
     shuffleCards();
     setGuessed(0);
     setCurrentCardIndex(0);
+    setCurrentCards(cards.map((card) => ({ ...card, guessed: false })));
   };
 
   const findNextCard = (from) => {
@@ -109,7 +148,9 @@ const Game = ({ cards, finishGame, shuffleCards }) => {
 
   const guess = () => {
     setLoading(true);
-    cards[currentCardIndex].guessed = true;
+    const newCards = [...cards];
+    newCards[currentCardIndex].guessed = true;
+    setCurrentCards(newCards);
     setGuessed(guessed + 1);
     if (isLastCard()) {
       const nextCardIndex = findNextCard();
@@ -138,10 +179,12 @@ const Game = ({ cards, finishGame, shuffleCards }) => {
 
   return (
     <div>
-      <h3>Round {round}</h3>
-      <h4>
-        Cards guessed: {guessed}/{total}
-      </h4>
+      <Inline>
+        <h3>Round {round}</h3>
+        <h4>
+          Cards guessed: {guessed}/{total}
+        </h4>
+      </Inline>
       <Card
         card={cards[currentCardIndex]}
         guess={guess}
@@ -149,8 +192,13 @@ const Game = ({ cards, finishGame, shuffleCards }) => {
         loading={loading}
         disablePass={total - guessed === 1}
       />
+      <Reset reset={reset} />
     </div>
   );
+};
+
+const Reset = ({ reset }) => {
+  return <button onClick={reset}>Reset Game</button>;
 };
 
 const PassButton = styled.button`
@@ -163,7 +211,7 @@ const GuessButton = styled.button`
   border-color: green;
 `;
 
-const Buttons = styled.div`
+const Inline = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -182,14 +230,14 @@ const Card = ({ card, guess, pass, disablePass, loading }) => {
   if (!card) return null;
   return (
     <CardContainer>
-      <Buttons>
+      <Inline>
         <GuessButton disabled={loading} onClick={guess}>
           Got it
         </GuessButton>
         <PassButton disabled={disablePass || loading} onClick={pass}>
           Pass
         </PassButton>
-      </Buttons>
+      </Inline>
       <h2>{card.name}</h2>
       <div>{card.description}</div>
     </CardContainer>
