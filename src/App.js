@@ -34,8 +34,7 @@ const App = () => {
   const reset = (force = false) => {
     let confirmed = false;
     if (!force) {
-      // eslint-disable-next-line no-restricted-globals
-      confirmed = confirm("Are you sure?");
+      confirmed = window.confirm("Are you sure?");
     }
     if (confirmed || force) {
       [
