@@ -170,8 +170,10 @@ const Game = ({
     let nextCardIndex;
     if (isLastCard()) {
       nextCardIndex = findNextCard();
+      setHidden(true);
     } else {
       nextCardIndex = findNextCard(currentCardIndex);
+      setHidden(true);
     }
     return setCurrentCardIndex(nextCardIndex);
   };
