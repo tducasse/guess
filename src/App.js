@@ -27,9 +27,7 @@ const App = () => {
     reset(true);
   };
 
-  const shuffleCards = () => {
-    setCurrentCards(shuffle(currentCards));
-  };
+  const shuffleCards = () => shuffle(currentCards);
 
   const reset = (force) => {
     const confirmed = force ? true : window.confirm("Are you sure?");
@@ -118,10 +116,11 @@ const Game = ({
     }
     alert(`Moving to round ${newRound}`);
     setRound(newRound);
-    shuffleCards();
     setGuessed(0);
     setCurrentCardIndex(0);
-    setCurrentCards(cards.map((card) => ({ ...card, guessed: false })));
+    setCurrentCards(
+      shuffleCards(cards).map((card) => ({ ...card, guessed: false }))
+    );
   };
 
   const findNextCard = (from) => {
