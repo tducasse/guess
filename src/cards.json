@@ -1,6 +1,46 @@
 {
   "cards": [
     {
+      "name": "The Pretender",
+      "description": "A tv show from the 90s, about a guy who can assume any identity and do any job. He's being chased by an organisation who wants to either kill him or capture him, we don't really know why."
+    },
+    {
+      "name": "Internet Explorer",
+      "description": "A web browser. Its sole purpose is to download Google Chrome."
+    },
+    {
+      "name": "A macbook air",
+      "description": "The cheapest apple branded laptop."
+    },
+    {
+      "name": "A bowling ball spinning so much it goes into the gutter at the last second",
+      "description": "Something that happens a lot if you throw lighter balls, or if you're Divyangana."
+    },
+    {
+      "name": "India's Monkey man",
+      "description": "An indian man who was about to kill himself, saw monkeys climbing a mountain, and decided to climb with them. He's now created a climbing school in his village and climbs like a monkey!"
+    },
+    {
+      "name": "John Butler Trio",
+      "description":"Australian hippies who play folk-pop-funk-fusion music. Really good guitar player with freakishly long fingernails."
+    },
+    {
+      "name": "A chocolatine",
+      "description":"Pain au chocolat, but the actual name."
+    },
+    {
+      "name": "Neo from the Matrix",
+      "description":"The chosen one in a famous Sci-Fi movie. Played by the actor who never ages. Mostly dodges bullets and jumps really far."
+    },
+    {
+      "name": "The blue shell in Mario Kart",
+      "description":"The item that kills you on the finish line when you're 1st and it's the last lap."
+    },
+    {
+      "name": "Sonic the Edgehog",
+      "description":"A blue animal that runs very fast and loves collecting rings"
+    },
+    {
     "name": "Harry Potter's Lightining Scar",
     "description": "No description"
   },
