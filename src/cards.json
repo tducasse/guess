@@ -1,6 +1,162 @@
 {
   "cards": [
     {
+    "name": "Harry Potter's Lightining Scar",
+    "description": "No description"
+  },
+  {
+    "name": "Hedwig",
+    "description": "Harry Potter's snowy owl"
+  },
+  {
+    "name": "The Theory of Natural Selection",
+    "description": "Darwin's theory of evolution"
+  },
+  {
+    "name": "The Bachelor from Bachelor",
+    "description": "No description required"
+  },
+  {
+    "name": "Et tu Brutus",
+    "description": "What Julius Caesar said before he died"
+  },
+  {
+    "name": "Dax Shepard",
+    "description": "Star in Parenthood, and husband of Kristen Bell"
+  },
+  {
+    "name": "Hakuna Matata",
+    "description": "Song from the lion king about troubles and peace of mind"
+  },
+  {
+    "name": "That photograph with Freya wearing an orange hat",
+    "description": "No description required"
+  },
+  {
+    "name": "Howard Hughes's steel bra",
+    "description": "In the 1940s, Howard Hughes had an underwire push-up bra designed for Jane Russell to emphasize her breasts in The Outlaw. According to Russell, the \"ridiculous\" contraption was painful and she secretly wore her own bra during the movie. The brassiere is now in a Hollywood museum."
+  },
+  {
+    "name": "Two girls 1 cup",
+    "description": "The unofficial nickname of the trailer for Hungry Bitches, a 2007 Brazilian scat fetish pornographic film produced by MFX Media."
+  },
+  {
+    "name": 90210,
+    "description": "Beverly hills zip code"
+  },
+  {
+    "name": "XOXO Gossip Girl",
+    "description": "Catchphrase from the popular TV Show"
+  },
+  {
+    "name": "Richard Gere's three wives",
+    "description": "No description"
+  },
+  {
+    "name": "Jubba Airways",
+    "description": "Somali airlines"
+  },
+  {
+    "name": "The Kikuka-shō",
+    "description": "Pronounced Kikka-shō) is a Japanese Grade 1 flat horse race in Japan for three-year-old thoroughbred colts and fillies run over a distance of 3,000 metres (approximately 1 7/8 miles) at the Kyoto Racecourse, Fushimi-ku, Kyoto, Kyoto Prefecture in October."
+  },
+  {
+    "name": "Gorgeous Grampa",
+    "description": "The fourteenth episode of the 24th season of The Simpsons and the 522nd episode overall. It originally aired on the Fox network in the United States on March 3, 2013."
+  },
+  {
+    "name": "The Kikuka-shō",
+    "description": "The Kikuka-shō (菊花賞, pronounced Kikka-shō) is a Japanese Grade 1 flat horse race in Japan for three-year-old thoroughbred colts and fillies run over a distance of 3,000 metres (approximately 1 7/8 miles) at the Kyoto Racecourse, Fushimi-ku, Kyoto, Kyoto Prefecture in October."
+  },
+  {
+    "name": "J.J. Thompson's son George Paget Thompson",
+    "description": "JJ, a nobel laureate himself had a son George Paget Thomson, who was also awarded a Nobel Prize for his work on the wave properties of the electron."
+  },
+  {
+    "name": "Thibaud's fancy roller blades",
+    "description": "No description"
+  },
+  {
+    "name": "Djamila the bad plant mom",
+    "description": "No description"
+  },
+  {
+    "name": "People who believe in selective breeding of black people",
+    "description": "No description"
+  },
+  {
+    "name": "Je suis Charlie",
+    "description": "A slogan and logo created by French art director Joachim Roncin and adopted by supporters of freedom of speech and freedom of the press after the 7 January 2015 shooting in which twelve people were killed"
+  },
+  {
+    "name": "The unjust cancellation of Firefly",
+    "description": "No description"
+  },
+  {
+    "name": "Tom Haverford's bowling style",
+    "description": "The character from Parks and Recreation"
+  },
+  {
+    "name": "The Expendables 3",
+    "description": "Celebrity studded action movie"
+  },
+  {
+    "name": "The Handmaid's Tale",
+    "description": "Dystopian show based on the book by Margaret Atwood"
+  },
+  {
+    "name": "Diane Keaton",
+    "description": "An American actress and filmmaker. Known for her idiosyncratic personality and dressing style, she has received an Academy Award, a BAFTA Award, two Golden Globe Awards, and the AFI Life Achievement Award. Best known for \"Annie Hall\" and \"The Godfather"
+  },
+  {
+    "name": "Shah Rukh Khan",
+    "description": "Famous Indian actor best known for his role in Dilwale Dulhaniya Le Jayenge and Kuchh Kuchh Hota Hai"
+  },
+  {
+    "name": "Rowena Ravenclaw's Tiara",
+    "description": "Rowena Ravenclaw = founder of Ravenclaw house at Hogwarts"
+  },
+  {
+    "name": "My Precious",
+    "description": "Phrase constantly used by Gollum to refer to the ring"
+  },
+  {
+    "name": "The Eye of Sauron",
+    "description": "The Eye of Sauron is the image most often associated with Sauron in The Lord of the Rings by J. R. R. Tolkien."
+  },
+  {
+    "name": "Our acquaintance who applied to be on 'Love Island'",
+    "description": "No description"
+  },
+  {
+    "name": "The kitchen on the second floor",
+    "description": "No description"
+  },
+  {
+    "name": "Simon Baker",
+    "description": "Australian actor known for 'The Mentalist' and 'The Devil Wears Prada'"
+  },
+  {
+    "name": "The Devil Wears Prada",
+    "description": "Movie with Anne Hathaway, Meryl Streep"
+  },
+  {
+    "name": "Zooey Deschanel",
+    "description": "Actress, also singer, 500 days of summer, new girl"
+  },
+  {
+    "name": "Wadjiginy",
+    "description": "Indigenous Australian people of the Northern Territory. The Wadjiginy are a saltwater people who describe themselves as wagatj \"beach-dwellers\" from the Batjamalh word wagatj \"beach\"."
+  },
+  {
+    "name": "Balcombe drilling protest",
+    "description": "The Balcombe drilling protest occurred when test drilling and possible fracking for petroleum were proposed in 2012 near Balcombe, a village in West Sussex England. Local residents protested and anti-fracking environmentalists in the UK made it a focus of attention."
+  },
+  {
+    "name": "Gandhi Ji's Three Monkeys",
+    "description": "No description"
+  },
+    {
       "name": "Doge",
       "description": "An Internet meme that shows a Shiba Inu surrounded by colorful Comic Sans text that describes its inner monologue, such as \"Wow,\" \"Concern,\" and \"so scare.\" There is much confuse over the name's pronunciation, yet it was recently used to brand a Bitcoin competitor."
     },
