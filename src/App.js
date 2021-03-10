@@ -1,4 +1,4 @@
-import { isUndefined, sampleSize, shuffle } from "lodash";
+import { differenceBy, isUndefined, sample, sampleSize, shuffle } from "lodash";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import allCards from "./cards.json";
@@ -29,6 +29,14 @@ const App = () => {
 
   const shuffleCards = () => shuffle(currentCards);
 
+  const repick = () => {
+    const newCards = currentCards.slice();
+    newCards[currentCardIndex] = sample(
+      differenceBy(allCards.cards, currentCards, "name")
+    );
+    setCurrentCards(newCards);
+  };
+
   const reset = (force) => {
     const confirmed = force ? true : window.confirm("Are you sure?");
     if (confirmed) {
@@ -50,6 +58,7 @@ const App = () => {
 
   return (
     <Game
+      repick={repick}
       cards={currentCards}
       shuffleCards={shuffleCards}
       finishGame={finishGame}
@@ -98,6 +107,7 @@ const Game = ({
   currentCardIndex,
   setCurrentCardIndex,
   reset,
+  repick,
 }) => {
   const total = cards.length;
   const [loading, setLoading] = useState(false);
@@ -194,7 +204,12 @@ const Game = ({
         hidden={hidden}
         reveal={() => setHidden(false)}
       />
-      <Reset reset={reset} />
+      <Row>
+        <Reset reset={reset} />
+        <RepickButton disabled={loading} onClick={repick}>
+          Repick
+        </RepickButton>
+      </Row>
     </div>
   );
 };
@@ -202,6 +217,12 @@ const Game = ({
 const Reset = ({ reset }) => {
   return <button onClick={() => reset()}>Reset Game</button>;
 };
+
+const Row = styled.div`
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const PassButton = styled.button`
   background: red;
@@ -211,6 +232,11 @@ const PassButton = styled.button`
 const GuessButton = styled.button`
   background: green;
   border-color: green;
+`;
+
+const RepickButton = styled.button`
+  background: gray;
+  border-color: gray;
 `;
 
 const Inline = styled.div`
