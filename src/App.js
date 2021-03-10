@@ -206,9 +206,11 @@ const Game = ({
       />
       <Row>
         <Reset reset={reset} />
-        <RepickButton disabled={loading} onClick={repick}>
-          Repick
-        </RepickButton>
+        {round <= 1 && !hidden && (
+          <RepickButton disabled={loading} onClick={repick}>
+            Repick
+          </RepickButton>
+        )}
       </Row>
     </div>
   );
