@@ -3,20 +3,19 @@ import React, { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import Setup from "./Setup";
 import Game from "./Game";
-import Tabletop from "tabletop";
+import { parse } from "papaparse";
 
-const SPREADSHEET_KEY = "1U_pW_Zc4q0ZSlx4i_0q6pObRY_4KFEeu41V92gt-iGk";
+const spreadsheet =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiXIIDQ5PPS8Lca5N2F_JzkcInFKvnp1lZl_z_cPuOO9qg88XO05mQvcIsA0xhngytA0Q6j4YVTQ6o/pub?output=csv";
 
 const App = () => {
   const [allCards, setAllCards] = useState([]);
 
   useEffect(() => {
-    Tabletop.init({
-      key: SPREADSHEET_KEY,
-      callback: (data) => {
-        setAllCards(data);
-      },
-      simpleSheet: true,
+    parse(spreadsheet, {
+      download: true,
+      header: true,
+      complete: (results) => setAllCards(results.data),
     });
   }, []);
 
