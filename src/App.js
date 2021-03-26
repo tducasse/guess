@@ -265,6 +265,7 @@ const Inline = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 12px;
 `;
 
 const CardContainer = styled.div`
