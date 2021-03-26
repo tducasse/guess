@@ -62,7 +62,8 @@ const CardInnerContainer = styled.div`
 `;
 
 const Hideable = styled.div`
-  ${({ hidden }) => (hidden ? `visibility: hidden;` : ``)} padding: 12px;
+  ${({ hidden }) => (hidden ? `visibility: hidden;` : ``)}
+  padding: 12px;
   display: flex;
   border-radius: 6px;
   background-color: #f2f2f2;
