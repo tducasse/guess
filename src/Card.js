@@ -23,7 +23,7 @@ const Card = ({ card, guess, pass, disablePass, loading, hidden, reveal }) => {
       <CardInnerContainer>
         <Hideable hidden={hidden}>
           <h2>{card.name}</h2>
-          <div>{card.description}</div>
+          <div>{card.description || "No description"}</div>
         </Hideable>
       </CardInnerContainer>
     </CardContainer>

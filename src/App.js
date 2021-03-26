@@ -15,6 +15,7 @@ const App = () => {
     parse(spreadsheet, {
       download: true,
       header: true,
+      skipEmptyLines: "greedy",
       complete: (results) => setAllCards(results.data),
     });
   }, []);
