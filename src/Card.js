@@ -5,25 +5,27 @@ const Card = ({ card, guess, pass, disablePass, loading, hidden, reveal }) => {
   if (!card) return null;
   return (
     <CardContainer>
-      {hidden ? (
-        <button onClick={reveal}>Reveal</button>
-      ) : (
-        <>
-          <Inline>
+      <Inline>
+        {hidden ? (
+          <button onClick={reveal}>Reveal</button>
+        ) : (
+          <>
             <GuessButton disabled={loading} onClick={guess}>
               Got it
             </GuessButton>
             <PassButton disabled={disablePass || loading} onClick={pass}>
               Pass
             </PassButton>
-          </Inline>
+          </>
+        )}
+      </Inline>
 
-          <CardInnerContainer>
-            <h2>{card.name}</h2>
-            <div>{card.description}</div>
-          </CardInnerContainer>
-        </>
-      )}
+      <CardInnerContainer>
+        <Hideable hidden={hidden}>
+          <h2>{card.name}</h2>
+          <div>{card.description}</div>
+        </Hideable>
+      </CardInnerContainer>
     </CardContainer>
   );
 };
@@ -52,15 +54,21 @@ const CardContainer = styled.div`
 `;
 
 const CardInnerContainer = styled.div`
-  background-color: #f2f2f2;
+  background-color: gray;
+  border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  border-radius: 6px;
-  padding: 12px;
+`;
+
+const Hideable = styled.div`
+  ${({ hidden }) => (hidden ? `visibility: hidden;` : ``)} padding: 12px;
   display: flex;
+  border-radius: 6px;
+  background-color: #f2f2f2;
   align-items: center;
   flex-direction: column;
+  padding: 12px;
 `;
 
 const Inline = styled.div`
