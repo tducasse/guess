@@ -216,29 +216,49 @@ const Game = ({
   );
 };
 
+const ResetButton = styled.button`
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+`;
+
 const Reset = ({ reset }) => {
-  return <button onClick={() => reset()}>Reset Game</button>;
+  return <ResetButton onClick={() => reset()}>Reset Game</ResetButton>;
 };
 
 const Row = styled.div`
   flex-direction: row;
   display: flex;
   justify-content: space-between;
+  margin-top: 12px;
+  margin-bottom: 12px;
 `;
 
 const PassButton = styled.button`
   background: red;
   border-color: red;
+
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 `;
 
 const GuessButton = styled.button`
   background: green;
   border-color: green;
+
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 `;
 
 const RepickButton = styled.button`
   background: gray;
   border-color: gray;
+
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
 `;
 
 const Inline = styled.div`
@@ -248,7 +268,16 @@ const Inline = styled.div`
 `;
 
 const CardContainer = styled.div`
-  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const CardInnerContainer = styled.div`
+  background-color: #f2f2f2;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
   border-radius: 6px;
   padding: 12px;
   display: flex;
@@ -272,8 +301,11 @@ const Card = ({ card, guess, pass, disablePass, loading, hidden, reveal }) => {
               Pass
             </PassButton>
           </Inline>
-          <h2>{card.name}</h2>
-          <div>{card.description}</div>
+
+          <CardInnerContainer>
+            <h2>{card.name}</h2>
+            <div>{card.description}</div>
+          </CardInnerContainer>
         </>
       )}
     </CardContainer>
