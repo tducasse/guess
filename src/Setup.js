@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import Loader from "react-loader-spinner";
 
-const Setup = ({ pickCards, setNumber, number }) => {
+const Setup = ({ pickCards, setNumber, number, ready }) => {
   const submit = (e) => {
     e.preventDefault();
     pickCards(number);
@@ -18,7 +19,14 @@ const Setup = ({ pickCards, setNumber, number }) => {
           onChange={(e) => setNumber(e.target.value)}
           type="number"
         ></input>
-        <button type="submit">Start</button>
+
+        <button type="submit" disabled={!ready}>
+          {ready ? (
+            "Start"
+          ) : (
+            <Loader type="ThreeDots" color="#118bee" height={18} />
+          )}
+        </button>
       </InnerContainer>
     </Container>
   );

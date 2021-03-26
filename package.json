@@ -9,8 +9,10 @@
     "lodash": "^4.17.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-loader-spinner": "^4.0.0",
     "react-scripts": "4.0.2",
     "styled-components": "^5.2.1",
+    "tabletop": "^1.6.3",
     "use-local-storage-state": "^9.0.2",
     "web-vitals": "^1.1.0"
   },

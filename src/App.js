@@ -1,11 +1,25 @@
-import { differenceBy, sample, sampleSize, shuffle } from "lodash";
-import React from "react";
-import allCards from "./cards.json";
+import { differenceBy, sample, sampleSize, shuffle, isEmpty } from "lodash";
+import React, { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import Setup from "./Setup";
 import Game from "./Game";
+import Tabletop from "tabletop";
+
+const SPREADSHEET_KEY = "1U_pW_Zc4q0ZSlx4i_0q6pObRY_4KFEeu41V92gt-iGk";
 
 const App = () => {
+  const [allCards, setAllCards] = useState([]);
+
+  useEffect(() => {
+    Tabletop.init({
+      key: SPREADSHEET_KEY,
+      callback: (data) => {
+        setAllCards(data);
+      },
+      simpleSheet: true,
+    });
+  }, []);
+
   const [currentCards, setCurrentCards] = useLocalStorageState(
     "currentCards",
     []
@@ -19,7 +33,7 @@ const App = () => {
   );
 
   const pickCards = (number) => {
-    const randomCards = sampleSize(allCards.cards, number);
+    const randomCards = sampleSize(allCards, number);
     setCurrentCards(randomCards);
   };
 
@@ -33,7 +47,7 @@ const App = () => {
   const repick = () => {
     const newCards = currentCards.slice();
     newCards[currentCardIndex] = sample(
-      differenceBy(allCards.cards, currentCards, "name")
+      differenceBy(allCards, currentCards, "name")
     );
     setCurrentCards(newCards);
   };
@@ -53,7 +67,12 @@ const App = () => {
 
   if (!currentCards.length) {
     return (
-      <Setup pickCards={pickCards} setNumber={setNumber} number={number} />
+      <Setup
+        pickCards={pickCards}
+        setNumber={setNumber}
+        number={number}
+        ready={!isEmpty(allCards)}
+      />
     );
   }
 
