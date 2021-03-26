@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { isUndefined } from "lodash";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Card from "./Card";
 
 const Game = ({
@@ -148,6 +148,27 @@ const Reset = ({ reset }) => {
   return <ResetButton onClick={() => reset()}>Reset Game</ResetButton>;
 };
 
+const scaleUpCenter = keyframes` 
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+`;
+
 const RepickButton = styled.button`
   background: gray;
   border-color: gray;
@@ -155,6 +176,10 @@ const RepickButton = styled.button`
   box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
     rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
     rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+  :active {
+    animation: ${scaleUpCenter} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  }
 `;
 
 export default Game;
