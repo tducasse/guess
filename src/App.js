@@ -220,6 +220,7 @@ const Inline = styled.div`
 `;
 
 const CardContainer = styled.div`
+  color: black;
   border: 1px solid black;
   border-radius: 6px;
   padding: 12px;
