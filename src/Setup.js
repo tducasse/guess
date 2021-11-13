@@ -38,6 +38,7 @@ const Title = styled.h1`
 `;
 
 const Container = styled.div`
+  color: black;
   height: 75vh;
   display: flex;
   flex-direction: column;

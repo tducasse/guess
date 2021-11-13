@@ -133,6 +133,7 @@ const Row = styled.div`
 `;
 
 const Inline = styled.div`
+  color: black;
   display: flex;
   width: 100%;
   justify-content: space-between;

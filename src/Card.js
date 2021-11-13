@@ -49,6 +49,7 @@ const GuessButton = styled.button`
 `;
 
 const CardContainer = styled.div`
+  color: black;
   display: flex;
   align-items: center;
   flex-direction: column;
