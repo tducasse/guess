@@ -1,10 +1,25 @@
-import { isUndefined, sampleSize, shuffle } from "lodash";
+import { differenceBy, sample, sampleSize, shuffle, isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import allCards from "./cards.json";
 import useLocalStorageState from "use-local-storage-state";
+import Setup from "./Setup";
+import Game from "./Game";
+import { parse } from "papaparse";
+
+const spreadsheet =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vRiXIIDQ5PPS8Lca5N2F_JzkcInFKvnp1lZl_z_cPuOO9qg88XO05mQvcIsA0xhngytA0Q6j4YVTQ6o/pub?output=csv";
 
 const App = () => {
+  const [allCards, setAllCards] = useState([]);
+
+  useEffect(() => {
+    parse(spreadsheet, {
+      download: true,
+      header: true,
+      skipEmptyLines: "greedy",
+      complete: (results) => setAllCards(results.data),
+    });
+  }, []);
+
   const [currentCards, setCurrentCards] = useLocalStorageState(
     "currentCards",
     []
@@ -18,7 +33,7 @@ const App = () => {
   );
 
   const pickCards = (number) => {
-    const randomCards = sampleSize(allCards.cards, number);
+    const randomCards = sampleSize(allCards, number);
     setCurrentCards(randomCards);
   };
 
@@ -28,6 +43,14 @@ const App = () => {
   };
 
   const shuffleCards = () => shuffle(currentCards);
+
+  const repick = () => {
+    const newCards = currentCards.slice();
+    newCards[currentCardIndex] = sample(
+      differenceBy(allCards, currentCards, "name")
+    );
+    setCurrentCards(newCards);
+  };
 
   const reset = (force) => {
     const confirmed = force ? true : window.confirm("Are you sure?");
@@ -44,12 +67,18 @@ const App = () => {
 
   if (!currentCards.length) {
     return (
-      <Setup pickCards={pickCards} setNumber={setNumber} number={number} />
+      <Setup
+        pickCards={pickCards}
+        setNumber={setNumber}
+        number={number}
+        ready={!isEmpty(allCards)}
+      />
     );
   }
 
   return (
     <Game
+      repick={repick}
       cards={currentCards}
       shuffleCards={shuffleCards}
       finishGame={finishGame}
